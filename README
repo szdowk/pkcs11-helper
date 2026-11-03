@@ -9,6 +9,11 @@ ABOUT
 	pkcs11-helper is a library that simplifies the interaction with
 	PKCS#11 providers for end-user applications.
 
+Developed specifically for the Polish national e-ID card
+("e-dowód") and successfully tested for S/MIME signing with
+the PWPW PKCS#11 module, alongside the accompanying
+pkcs11-helper and GnuPG fixes.
+
 FEATURES
 	pkcs11-helper allows using multiple PKCS#11 providers at the same
 	time, enumerating available token certificates, or selecting a
@@ -34,4 +39,5 @@ SUPPORT
 
 AUTHORS
 	Alon Bar-Lev <alon.barlev@gmail.com>
+	szdowk
 
