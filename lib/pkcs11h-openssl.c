@@ -350,7 +350,11 @@ int
 __pkcs11h_openssl_ex_data_dup (
 	CRYPTO_EX_DATA *to,
 	const CRYPTO_EX_DATA *from,
+#if OPENSSL_VERSION_NUMBER < 0x30000000L
+	void *from_d,
+#else
 	void **from_d,
+#endif
 	int idx,
 	long argl,
 	void *argp
@@ -371,7 +375,11 @@ __pkcs11h_openssl_ex_data_dup (
 
 	_PKCS11H_ASSERT (from_d!=NULL);
 
+#if OPENSSL_VERSION_NUMBER >= 0x10100001L && OPENSSL_VERSION_NUMBER < 0x30000000L
+	if ((openssl_session = (pkcs11h_openssl_session_t)from_d) != NULL) {
+#else
 	if ((openssl_session = *(pkcs11h_openssl_session_t *)from_d) != NULL) {
+#endif
 		_PKCS11H_DEBUG (
 			PKCS11H_LOG_DEBUG2,
 			"PKCS#11: __pkcs11h_openssl_ex_data_dup session refcount=%d",
